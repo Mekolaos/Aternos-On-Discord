@@ -1,19 +1,22 @@
 import discord
+from discord.ext import commands
 import os
 from lxml import html
 import requests
 from connect_and_launch import start_server
 from dotenv import load_dotenv
+import json
 
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+SERVER_STATUS_URI = 'https://jackadit.aternos.me'
 
 client = discord.Client()
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('The bot is logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
@@ -35,12 +38,12 @@ async def on_message(message):
         await message.channel.send("Mazal ma temchi")
 
 def get_status():
-    page = requests.get('https://jackadit.aternos.me')
+    page = requests.get(SERVER_STATUS_URI)
     tree = html.fromstring(page.content)
     status = tree.xpath('/html/body/div/div[3]/div/div/div[1]/span/text()')
     return status[0]
 def get_number_of_players():
-    page = requests.get('https://jackadit.aternos.me')
+    page = requests.get(SERVER_STATUS_URI)
     tree = html.fromstring(page.content)
     status = tree.xpath('/html/body/div/div[4]/div/div/div/span[1]/text()')
     return status[0]
