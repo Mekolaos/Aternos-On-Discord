@@ -1,4 +1,4 @@
-# Aternos On Discord
+# Aternos On Discord [![Build Status](https://travis-ci.com/Mekolaos/JackADit.svg?branch=master)](https://travis-ci.com/Mekolaos/JackADit)
 
 A simple tool to serve your own discord bot so you can manage an Aternos server from discord.
 
