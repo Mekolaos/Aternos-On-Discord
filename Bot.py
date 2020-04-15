@@ -10,7 +10,7 @@ import json
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-SERVER_STATUS_URI = 'https://jackadit.aternos.me'
+SERVER_STATUS_URI = os.getenv("SERVER_STATUS_URI")
 
 client = discord.Client()
 
@@ -28,14 +28,14 @@ async def on_message(message):
             await start_server()
         else:
             await message.channel.send("The server is already Online")
-    if message.content == '-Jackadit server_status':
+    if message.content == '--server status':
         status = get_status()
         await message.channel.send("The server is {}".format(status))
-    if message.content == '-Jackadit players':
+    if message.content == '--players':
         players = get_number_of_players()
         await message.channel.send("There are {} players on the server".format(players))
-    if message.content == '-Jackadit stop_server':
-        await message.channel.send("Mazal ma temchi")
+    if message.content == '--stop server':
+        await message.channel.send("Stopping the server not yet implemented.")
 
 def get_status():
     page = requests.get(SERVER_STATUS_URI)
