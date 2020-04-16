@@ -25,7 +25,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content == '-Jackadit launch_server':
+    if message.content == '--launch server':
         if get_status() == "Offline":
             await message.channel.send("Launching the server boss !")
             await start_server()

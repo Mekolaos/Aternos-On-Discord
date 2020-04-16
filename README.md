@@ -13,5 +13,10 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 - A Discord server for which you have the rights to add a bot
 - An Aternos account
 
+### Discord Commands
+- --launch server
+- --server status
+- --players
+- --stop server(not working yet)
 
 
