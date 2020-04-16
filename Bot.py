@@ -1,12 +1,15 @@
 import discord
 from discord.ext import commands
 import os
+from Configure import launch_config
 from lxml import html
 import requests
 from connect_and_launch import start_server
 from dotenv import load_dotenv
 import json
 
+if not os.path.exists(os.path.relpath(".env")):
+    launch_config()
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
