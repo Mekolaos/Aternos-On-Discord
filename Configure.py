@@ -20,19 +20,34 @@ def launch_config():
     server_uri_entry = tk.Entry(window, width=15)
     server_uri_entry.place(x=240/1.5, y=160/1.5)
 
+    username_label = tk.Label(window, text="Aternos username")
+    username_label.place(x=80/1.5, y=190/1.5)
+    username_entry = tk.Entry(window, width=15)
+    username_entry.place(x=240/1.5, y=190/1.5)
+
+    password_label = tk.Label(window, text="Aternos password")
+    password_label.place(x=80/1.5, y=220/1.5)
+    password_entry = tk.Entry(window, width=15)
+    password_entry.place(x=240/1.5, y=220/1.5)
+
+
     save_button = tk.Button(window, text="Save configuration", bg="#1a6600", fg="white")
-    save_button['command'] = lambda : save_configuration(server_uri_entry, bot_token_entry, window)
-    save_button.place(x=160/1.5, y=210/1.5)
+    save_button['command'] = lambda : save_configuration(server_uri_entry, bot_token_entry, username_entry, password_entry, window)
+    save_button.place(x=160/1.5, y=250/1.5)
 
     window.mainloop()
 
-def save_configuration(uri_entry, token_entry, window):
+def save_configuration(uri_entry, token_entry, username_entry, password_entry, window):
     if uri_entry.get().endswith(".aternos.me"):
         bot_token = "BOT_TOKEN= {}".format(token_entry.get())
         uri_entry = "\nSERVER_STATUS_URI= {}".format(uri_entry.get())
+        username = "\nUSER= {}".format(username_entry.get())
+        password = "\nPASSWORD= {}".format(password_entry.get())
         with open(".env", "w") as f:
             f.write(bot_token)
             f.write(uri_entry)
+            f.write(username)
+            f.write(password)
         window.destroy()
     else:
         error = tk.Label(window, text="Server link has to match <YourServerName>.aternos.me", )

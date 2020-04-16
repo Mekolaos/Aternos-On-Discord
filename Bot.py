@@ -13,7 +13,7 @@ if not os.path.exists(os.path.relpath(".env")):
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-SERVER_STATUS_URI = os.getenv("SERVER_STATUS_URI")
+SERVER_STATUS_URI = "https://" + os.getenv("SERVER_STATUS_URI")
 
 client = discord.Client()
 
