@@ -9,6 +9,7 @@ import asyncio
 import time
 from dotenv import load_dotenv
 import os
+from chromedriver_py import binary_path
 
 if os.path.exists(os.path.relpath(".env")):
     load_dotenv()
@@ -16,7 +17,6 @@ if os.path.exists(os.path.relpath(".env")):
     PASSWORD = os.getenv('PASSWORD_C')
     URL = "https://aternos.org/go/"
     SERVER_STATUS_URI = "http://" + os.getenv("SERVER_STATUS_URI")
-    HEADER = {"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125"}
    
 connected = False
 
@@ -24,7 +24,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125")
 
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(options=options, executable_path=binary_path)
 
 @can_fire_async
 async def start_server():
