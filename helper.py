@@ -16,3 +16,4 @@ def can_fire(func):
         return(func)
     else:
         print("Cannot find configuration file")
+        

@@ -15,11 +15,10 @@ if os.path.exists(os.path.relpath(".env")):
     USER = os.getenv('USERNAME_C')
     PASSWORD = os.getenv('PASSWORD_C')
     URL = "https://aternos.org/go/"
-    S_URL = "https://aternos.org/server/"
     SERVER_STATUS_URI = "http://" + os.getenv("SERVER_STATUS_URI")
     HEADER = {"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125"}
    
-
+connected = False
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
@@ -32,7 +31,8 @@ async def start_server():
     """ Starts the server by clicking on the start button.
         The try except part tries to find the confirmation button, and if it 
         doesn't, it continues to loop until the confirm button is clicked."""
-    connect_account()    
+    if not connected:
+        connect_account()  
     await asyncio.sleep(5)
     element = driver.find_element_by_xpath("/html/body/div/main/section/div/div[2]/div[1]/div[1]")
     element.click()
@@ -80,10 +80,13 @@ def connect_account():
     element.send_keys(PASSWORD)
     element = driver.find_element_by_xpath('//*[@id="login"]')
     element.click()
+    connected = True
     time.sleep(10)
 
 @can_fire_async
 async def stop_server():
+    if not connected:
+        connect_account()
     driver.get(URL)
     element = driver.find_element_by_xpath("/html/body/div/main/section/div/div[2]/div[1]/div[1]")
     element.click()
