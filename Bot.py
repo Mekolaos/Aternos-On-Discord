@@ -2,11 +2,12 @@ import discord
 from discord.ext import commands
 import os
 from Configure import launch_config
-from connect_and_launch import start_server, get_status
 from dotenv import load_dotenv
 import json
+from connect_and_launch import start_server, get_status, stop_server
 
 if not os.path.exists(os.path.relpath(".env")):
+    print("not here")
     launch_config()
 
 load_dotenv()
@@ -19,7 +20,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('The bot is logged in as {0.user}'.format(client))
-    await client.get_channel(326811093219541002).send("@everyone Hello motherfuckers !")
+    # await client.get_channel(326811093219541002).send("@everyone Hello !")
 
     
 
@@ -50,7 +51,8 @@ async def on_message(message):
         await message.channel.send("There are {} players on the server".format(players))
 
     if message.content == '--stop server':
-        await message.channel.send("Stopping the server not yet implemented.")
+        await stop_server()
+        await message.channel.send("Stopping the server.")
     
 
 client.run(BOT_TOKEN)

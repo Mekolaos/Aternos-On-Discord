@@ -50,7 +50,7 @@ def save_configuration(uri_entry, token_entry, username_entry, password_entry, w
             f.write(password)
         window.destroy()
     else:
-        error = tk.Label(window, text="Server link has to match <YourServerName>.aternos.me", )
+        error = tk.Label(window, text="Server link must match <YourServerName>.aternos.me", )
         error.place(x=0, y=0)
 if __name__ == "__main__":
     launch_config()
