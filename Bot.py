@@ -7,7 +7,6 @@ import json
 from connect_and_launch import start_server, get_status, stop_server
 
 if not os.path.exists(os.path.relpath(".env")):
-    print("not here")
     launch_config()
 
 load_dotenv()
@@ -20,7 +19,6 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('The bot is logged in as {0.user}'.format(client))
-    # await client.get_channel(326811093219541002).send("@everyone Hello !")
 
     
 
@@ -33,20 +31,18 @@ async def on_message(message):
     if message.content == '--launch server':
         status = get_status()
         if status == "Offline":
-            await message.channel.send("Launching the server boss !")
+            await message.channel.send("Launching the server.")
             await start_server
 
         elif status == "Online":
             await message.channel.send("The server is already Online")
 
         else :
-            print(status)
             await message.channel.send("An error occured. Either the status server is not responding, or you didn't set the server name correctly.\nTrying to launch server anyway.")
             await start_server
 
     if message.content == '--server status':
         status = get_status()
-        print(status)
         await message.channel.send("The server is {}".format(status))
 
     if message.content == '--players':
