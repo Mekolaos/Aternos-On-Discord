@@ -46,7 +46,7 @@ async def start_server():
     driver.close()
 
 @can_fire
-def get_status():
+async def get_status():
     # Piece of shit code that returns the fucking status of the server as a string.
 
     driver.get(SERVER_STATUS_URI)
@@ -56,7 +56,7 @@ def get_status():
 def get_number_of_players():
     # Returns the number of players as a string
     driver.get(SERVER_STATUS_URI)
-    number_of_players = WebDriverWait(driver, 10).until(ec.presence_of_element_located((By.XPATH, '/html/body/div/div[4]/div/div/div/span[1]')))
+    number_of_players = WebDriverWait(driver, 360).until(ec.presence_of_element_located((By.XPATH, '/html/body/div/div[4]/div/div/div/span[1]')))
     return number_of_players.text
 
 @can_fire
