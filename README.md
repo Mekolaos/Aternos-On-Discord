@@ -13,7 +13,6 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 ### Prerequisites
 - python 3.7 or higher
 - A Discord server for which you have the rights to add a bot
-- An installation of the chrome driver which you can find here [chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 - An Aternos account
 
 ### Discord Commands
