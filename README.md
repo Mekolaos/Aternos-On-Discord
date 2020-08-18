@@ -6,8 +6,8 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 1. Git clone this repository 
 1. Install it using either:
-  * Copy, paste and execute this command inside the project folder: ```pip install -r requirements.txt```
-  * Alternatively you can create a virtual environement using ```python -m venv venv ``` and then ```source venv/bin/activate``` to finally ```pip install -r  requirements.txt```
+   * Copy, paste and execute this command inside the project folder: ```pip install -r requirements.txt```
+   * Alternatively you can create a virtual environement using ```python -m venv venv ``` and then ```source venv/bin/activate``` to finally ```pip install -r  requirements.txt```
 1. Execute using this command inside the project folder : python3 Bot.py
 
 ### Prerequisites
