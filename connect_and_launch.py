@@ -4,7 +4,7 @@ from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
-from helper import can_fire
+from helper import can_fire, can_fire_async
 import asyncio
 import time
 from dotenv import load_dotenv
@@ -12,27 +12,34 @@ import os
 
 if os.path.exists(os.path.relpath(".env")):
     load_dotenv()
-    USER = os.getenv('USERNAME')
+    USER = os.getenv('USERNAME_C')
     PASSWORD = os.getenv('PASSWORD_C')
     URL = "https://aternos.org/go/"
+    S_URL = "https://aternos.org/server/"
     SERVER_STATUS_URI = "http://" + os.getenv("SERVER_STATUS_URI")
+    HEADER = {"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125"}
    
 
 
 options = webdriver.ChromeOptions()
-options.add_argument('headless')
+# options.add_argument('headless')
+options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 OPR/68.0.3618.125")
 
 driver = webdriver.Chrome(options=options)
 
-@can_fire
+@can_fire_async
 async def start_server():
     """ Starts the server by clicking on the start button.
         The try except part tries to find the confirmation button, and if it 
         doesn't, it continues to loop until the confirm button is clicked."""
-    
+    connect_account()    
+    await asyncio.sleep(5)
+    element = driver.find_element_by_xpath("/html/body/div/main/section/div/div[2]/div[1]/div[1]")
+    element.click()
+    await asyncio.sleep(3)
     element = driver.find_element_by_xpath('//*[@id="start"]')
     element.click()
-    asyncio.wait(10)
+    await asyncio.sleep(10)
     element = driver.find_element_by_xpath('//*[@id="nope"]/main/div/div/div/main/div/a[1]')
     element.click()
     state = driver.find_element_by_xpath('//*[@id="nope"]/main/section/div[3]/div[2]/div/div/span[2]/span')
@@ -46,12 +53,14 @@ async def start_server():
     driver.close()
 
 @can_fire
-async def get_status():
+def get_status():
     # Piece of shit code that returns the fucking status of the server as a string.
-
     driver.get(SERVER_STATUS_URI)
-    element = WebDriverWait(driver, 10).until(ec.presence_of_element_located((By.XPATH, '/html/body/div/div[3]/div/div/div[1]/span')))
+    time.sleep(5)
+    element = driver.find_element_by_css_selector('body > div > div.row.no-bottom-padding > div > div > div.status > span')
+    print(element.text)
     return element.text
+
 @can_fire
 def get_number_of_players():
     # Returns the number of players as a string
@@ -60,7 +69,7 @@ def get_number_of_players():
     return number_of_players.text
 
 @can_fire
-async def connect_account():
+def connect_account():
     """ Connects to the accounts through a headless chrome tab so we don't
         have to do it every time we want to start or stop the server."""
 
@@ -71,11 +80,14 @@ async def connect_account():
     element.send_keys(PASSWORD)
     element = driver.find_element_by_xpath('//*[@id="login"]')
     element.click()
-    asyncio.wait(10)
+    time.sleep(10)
 
-@can_fire
+@can_fire_async
 async def stop_server():
     driver.get(URL)
+    element = driver.find_element_by_xpath("/html/body/div/main/section/div/div[2]/div[1]/div[1]")
+    element.click()
+    await asyncio.sleep(3)
     element = driver.find_element_by_xpath('//*[@id="stop"]')
     element.click()
 

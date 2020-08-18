@@ -31,7 +31,7 @@ async def on_message(message):
         return
 
     if message.content == '--launch server':
-        status = await get_status
+        status = get_status()
         if status == "Offline":
             await message.channel.send("Launching the server boss !")
             await start_server
@@ -40,11 +40,13 @@ async def on_message(message):
             await message.channel.send("The server is already Online")
 
         else :
+            print(status)
             await message.channel.send("An error occured. Either the status server is not responding, or you didn't set the server name correctly.\nTrying to launch server anyway.")
             await start_server
 
     if message.content == '--server status':
-        status = await get_status
+        status = get_status()
+        print(status)
         await message.channel.send("The server is {}".format(status))
 
     if message.content == '--players':

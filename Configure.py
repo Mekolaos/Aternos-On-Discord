@@ -41,8 +41,8 @@ def save_configuration(uri_entry, token_entry, username_entry, password_entry, w
     if uri_entry.get().endswith(".aternos.me"):
         bot_token = "BOT_TOKEN= {}".format(token_entry.get())
         uri_entry = "\nSERVER_STATUS_URI= {}".format(uri_entry.get())
-        username = "\nUSER= {}".format(username_entry.get())
-        password = "\nPASSWORD= {}".format(password_entry.get())
+        username = "\nUSERNAME_C= {}".format(username_entry.get())
+        password = "\nPASSWORD_C= {}".format(password_entry.get())
         with open(".env", "w") as f:
             f.write(bot_token)
             f.write(uri_entry)
