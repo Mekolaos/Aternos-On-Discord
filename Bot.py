@@ -27,31 +27,52 @@ async def on_message(message):
 
     if message.author == client.user:
         return
+    
+    if message.content.startswith('--'):
 
-    if message.content == '--launch server':
-        status = get_status()
-        if status == "Offline":
-            await message.channel.send("Launching the server.")
-            await start_server
+        if message.content == '--launch server':
 
-        elif status == "Online":
-            await message.channel.send("The server is already Online")
+            await message.channel.send("Launching Server...")
+            status = get_status()
 
-        else :
-            await message.channel.send("An error occured. Either the status server is not responding, or you didn't set the server name correctly.\nTrying to launch server anyway.")
-            await start_server
+            if status == "Offline":
+                await start_server
 
-    if message.content == '--server status':
-        status = get_status()
-        await message.channel.send("The server is {}".format(status))
+            elif status == "Online":
+                await message.channel.send("The server is already Online")
 
-    if message.content == '--players':
-        players = get_number_of_players()
-        await message.channel.send("There are {} players on the server".format(players))
+            else :
+                await message.channel.send("An error occured. Either the status server is not responding, or you didn't set the server name correctly.\nTrying to launch server anyway.")
+                await start_server
 
-    if message.content == '--stop server':
-        await stop_server
-        await message.channel.send("Stopping the server.")
+        elif message.content == '--server status':
+            await message.channel.send("Getting status...")
+            status = get_status()
+            await message.channel.send("The server is {}".format(status))
+
+        elif message.content == '--players':
+            await message.channel.send("Getting players...")
+            try:
+                players = get_number_of_players()
+            except:
+                await message.channel.send("There are no players on the server")
+            else: 
+                await message.channel.send("There are {} players on the server".format(players))
+
+        elif message.content == '--stop server':
+            await message.channel.send("Stopping the server.")
+            await stop_server
+
+        elif message.content == '--help': 
+            embed = discord.Embed(title="Help")
+            embed.add_field(name="--launch server", value="Launches the server", inline=False)
+            embed.add_field(name="--server status", value="Gets the server status", inline=False)
+            embed.add_field(name="--players", value="Gets the number of players", inline=False)
+            embed.add_field(name="--stop server", value="Stops the server", inline=False)
+            embed.add_field(name="--help", value="Displays this message", inline=False)
+            await message.channel.send(embed=embed)
+        else:
+            await message.channel.send("Unknown command, use --help to see a list of all availiable commands")
     
 
 client.run(BOT_TOKEN)
