@@ -54,7 +54,7 @@ async def start_server():
 
 @can_fire
 def get_status():
-    # Piece of shit code that returns the fucking status of the server as a string.
+    # Returns the status of the server as a string
     driver.get(SERVER_STATUS_URI)
     time.sleep(5)
     element = driver.find_element_by_css_selector('body > div > div.row.no-bottom-padding > div > div > div.status > span')
