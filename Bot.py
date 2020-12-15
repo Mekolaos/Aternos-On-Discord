@@ -26,6 +26,7 @@ async def on_ready():
 
     connect_account()  # logs into aternos
     print('The bot is logged in as {0.user}'.format(client))
+    await asyncio.sleep(2)
     serverStatus.start()  # starts the presence update loop
 
 
