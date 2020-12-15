@@ -24,6 +24,7 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 - --launch server
 - --server status
+- --server info
 - --players
 - --stop server
 - --crash
@@ -32,4 +33,4 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 ### Cloud Hosting Note
 
-Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a datacenter and requires a captcha.
+Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.

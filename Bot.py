@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from discord.ext import tasks
 from Configure import launch_config
 from connect_and_launch import get_status, get_number_of_players
-from connect_and_launch import connect_account, quitBrowser
+from connect_and_launch import connect_account, quitBrowser, get_server_info
 from connect_and_launch import start_server, stop_server
 
 if not os.path.exists(os.path.relpath(".env")):
@@ -77,6 +77,14 @@ async def on_message(message):
         elif message.content.lower() == '--players':
             text = f"There are {get_number_of_players()} players online."
             await message.channel.send(text)
+        
+        elif message.content.lower() == '--server info':
+            ip, status, players, software, version = get_server_info()
+            text = f"**IP:** {ip} \n**Status:** {status} \n**Players: " \
+                   f"**{players} \n**Version:** {software} {version}"
+            embed = discord.Embed()
+            embed.add_field(name="Server Info", value=text, inline=False)
+            await message.channel.send(embed=embed)
 
         elif message.content.lower() == '--stop server':
             await message.channel.send("Stopping the server.")
@@ -96,6 +104,9 @@ async def on_message(message):
             embed.add_field(name="--server status",
                             value="Gets the server status",
                             inline=False)
+            embed.add_field(name="--server info",
+                            value="Gets the server info",
+                            inline=False)
             embed.add_field(name="--players",
                             value="Gets the number of players",
                             inline=False)
@@ -114,7 +125,6 @@ async def on_message(message):
             quitBrowser()
             text = "Bot Shutting Down..."
             await client.change_presence(activity=discord.Game(name=text))
-            await client.logout()
             sys.exit()
 
         else:
