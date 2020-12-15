@@ -12,7 +12,7 @@ PASSWORD = os.getenv('PASSWORD_C')
 URL = "https://aternos.org/go/"
 
 # chrome variables
-adblock = True  # for those with network wide ad blockers
+adblock = False  # for those with network wide ad blockers
 headless = True  # if you want a headless window
 
 options = webdriver.ChromeOptions()
