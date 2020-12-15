@@ -11,6 +11,7 @@ from connect_and_launch import start_server, stop_server
 
 if not os.path.exists(os.path.relpath(".env")):
     launch_config()
+    sys.exit()
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
