@@ -6,11 +6,10 @@ from selenium.common.exceptions import ElementNotInteractableException
 from dotenv import load_dotenv
 from chromedriver_py import binary_path
 
-if os.path.exists(os.path.relpath(".env")):
-    load_dotenv()
-    USER = os.getenv('USERNAME_C')
-    PASSWORD = os.getenv('PASSWORD_C')
-    URL = "https://aternos.org/go/"
+load_dotenv()
+USER = os.getenv('USERNAME_C')
+PASSWORD = os.getenv('PASSWORD_C')
+URL = "https://aternos.org/go/"
 
 # chrome variables
 adblock = False  # for those with network wide ad blockers
