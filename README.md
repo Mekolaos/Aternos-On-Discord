@@ -20,5 +20,7 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 - --server status
 - --players
 - --stop server
+- --crash
+- --help
 
 

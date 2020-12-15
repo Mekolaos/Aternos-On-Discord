@@ -101,6 +101,9 @@ async def on_message(message):
             embed.add_field(name="--stop server",
                             value="Stops the server",
                             inline=False)
+            embed.add_field(name="--crash",
+                            value="Shuts down the bot",
+                            inline=False)
             embed.add_field(name="--help",
                             value="Displays this message",
                             inline=False)
