@@ -4,7 +4,7 @@ attrs==19.3.0
 bandit==1.6.2
 certifi==2019.11.28
 chardet==3.0.4
-chromedriver-py==85.0.4183.87
+chromedriver-py==87.0.4280.88
 discord==1.0.1
 discord.py==1.5.1
 gitdb==4.0.5
