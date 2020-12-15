@@ -16,7 +16,7 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 ### Prerequisites
 
-- python 3.7 or higher
+- Python 3.7 or higher
 - A Discord server for which you have the rights to add a bot
 - An Aternos account
 
@@ -28,3 +28,8 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 - --stop server
 - --crash
 - --help
+
+
+### Cloud Hosting Note
+
+Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a datacenter and requires a captcha.
