@@ -4,21 +4,33 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 ## Getting Started
 
-1. Git clone this repository 
-1. Install it using either:
+1. Git clone this repository
+2. Install it using either:
    * Copy, paste and execute this command inside the project folder: ```pip install -r requirements.txt```
-   * Alternatively you can create a virtual environement using ```python -m venv venv ``` and then ```source venv/bin/activate``` to finally ```pip install -r  requirements.txt```
-1. Execute using this command inside the project folder : python3 Bot.py
+   * Alternatively you can create a virtual environnement using ```python -m venv venv``` and then ```source venv/bin/activate``` to finally ```pip install -r  requirements.txt```
+3. Execute using this command inside the project folder : ```python3 Bot.py```
+
+**Note:** When running ```Bot.py``` for the first time, you'll be prompted to enter your Aternos account and bot token. You'll need to run ```python3 Bot.py``` again after you finish setting your information.
+
+* Should you ever need to change the information you can edit the ```.env``` directly or delete it and run ```Bot.py``` again.
 
 ### Prerequisites
-- python 3.7 or higher
-- A Discord server for which you have the rights to add a bot
-- An Aternos account
+
+* Python 3.7 or higher
+* A Discord server for which you have the rights to add a bot
+* An Aternos account
 
 ### Discord Commands
-- --launch server
-- --server status
-- --players
-- --stop server
+
+* --launch server
+* --server status
+* --server info
+* --players
+* --stop server
+* --crash
+* --help
 
 
+### Cloud Hosting Note
+
+Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.
