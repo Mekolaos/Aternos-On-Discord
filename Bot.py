@@ -139,7 +139,7 @@ async def on_message(message):
 
 @tasks.loop(seconds=5.0)
 async def serverStatus():
-    text = f"Server: {get_status()} | IP: {get_server_ip()} | " \
+    text = f"Server: {get_status()} | Players: {get_number_of_players()} | " \
            f"--help"
     activity = discord.Activity(type=discord.ActivityType.watching, name=text)
     await client.change_presence(activity=activity)

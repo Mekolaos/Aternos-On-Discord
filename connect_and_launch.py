@@ -63,7 +63,9 @@ def get_number_of_players():
     """ Returns the number of players as a string.
         Works: When server is online--Returns 0 if offline"""
     try:
-        return driver.find_element_by_xpath('//*[@id="players"]').text
+        return driver.find_element_by_xpath('//*[@id="nope"]/main/section'
+                                            '/div[3]/div[5]/div[2]/div['
+                                            '1]/div[1]/div[2]/div[2]').text
     except NoSuchElementException:
         # Can't be 0/20 because max isn't always the same,
         # could maybe pull max players from options page
