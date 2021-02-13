@@ -54,9 +54,9 @@ async def start_server():
 
 def get_status():
     """ Returns the status of the server as a string."""
-    return driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
-                                        'div[3]/div[3]/div[1]/div/span[2]'
-                                        '/span').text
+    return driver.find_element_by_xpath('//*[@id="nope"]/main/section/div['
+                                        '3]/div[3]/div[1]/div/span['
+                                        '2]/span').text
 
 
 def get_number_of_players():

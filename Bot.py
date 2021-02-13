@@ -55,7 +55,7 @@ async def launch(ctx):
 
         # if pinging a person, server will ping them when launching
         # else ping the the user who sent the command on launch
-        if len(ctx.message.mentions == 0):
+        if len(ctx.message.mentions) == 0:
             author = ctx.author
         else:
             author = ctx.message.mentions[0]
@@ -101,7 +101,7 @@ async def info(ctx):
 
 @bot.command()
 async def stop(ctx):
-    ctx.send("Stopping the server...")
+    await ctx.send("Stopping the server...")
     server_status = get_status()
 
     if server_status != 'Stopping ...' or server_status != 'Saving ...' or \
