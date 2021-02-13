@@ -13,7 +13,7 @@ URL = "https://aternos.org/go/"
 
 # chrome variables
 adblock = False  # for those with network wide ad blockers
-headless = True  # if you want a headless window
+headless = False  # if you want a headless window
 
 options = webdriver.ChromeOptions()
 if headless:
@@ -53,28 +53,42 @@ async def start_server():
 
 def get_status():
     """ Returns the status of the server as a string."""
-    element = driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
-                                           'div[3]/div[3]/div[1]/div/span[2]'
-                                           '/span')
-    return element.text
+    return driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
+                                        'div[3]/div[3]/div[1]/div/span[2]'
+                                        '/span').text
 
 
 def get_number_of_players():
-    """ Returns the number of players as a string."""
-    element = driver.find_element_by_xpath('//*[@id="players"]')
-    return element.text
+    """ Returns the number of players as a string.
+        Works: When server is online"""
+    return driver.find_element_by_xpath('//*[@id="players"]').text
+
+
+def get_server_ip():
+    """ Returns the severs IP address.
+        Works: Always works"""
+    return driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
+                                        'div[3]/div[1]').text[:-8]
+
+
+def get_software():
+    """ Returns the server software.
+        Works: Always works"""
+    return driver.find_element_by_xpath('//*[@id="software"]').tex
+
+
+def get_version():
+    """ Returns the server version.
+        Works: Always works"""
+    return driver.find_element_by_xpath('//*[@id="version"]').text
 
 
 def get_server_info():
     """ Returns a string of information about the server
         Returns: server_ip, server_status, number of players, software,
         version"""
-    server_ip = driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
-                                             'div[3]/div[1]').text[:-8]
-    software = driver.find_element_by_xpath('//*[@id="software"]').text
-    version = driver.find_element_by_xpath('//*[@id="version"]').text
-
-    return server_ip, get_status(), get_number_of_players(), software, version
+    return get_server_ip(), get_status(), get_number_of_players(), \
+           get_software(), get_version()
 
 
 def connect_account():
