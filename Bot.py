@@ -5,8 +5,9 @@ import asyncio
 from dotenv import load_dotenv
 from discord.ext import tasks
 from Configure import launch_config
-from connect_and_launch import get_status, get_number_of_players
-from connect_and_launch import connect_account, quitBrowser, get_server_info
+from connect_and_launch import get_server_info, get_status, \
+    get_number_of_players, get_version, get_software, get_server_ip
+from connect_and_launch import connect_account, quitBrowser
 from connect_and_launch import start_server, stop_server
 
 if not os.path.exists(os.path.relpath(".env")):
@@ -81,8 +82,10 @@ async def on_message(message):
         
         elif message.content.lower() == '--server info':
             ip, status, players, software, version = get_server_info()
-            text = f"**IP:** {ip} \n**Status:** {status} \n**Players: " \
-                   f"**{players} \n**Version:** {software} {version}"
+            text = f"**IP:** {ip} \n" \
+                   f"**Status:** {status} \n" \
+                   f"**Players:** {players} \n" \
+                   f"**Version:** {software} {version}"
             embed = discord.Embed()
             embed.add_field(name="Server Info", value=text, inline=False)
             await message.channel.send(embed=embed)
@@ -91,7 +94,8 @@ async def on_message(message):
             await message.channel.send("Stopping the server.")
             status = get_status()
 
-            if status != 'Stopping ...' or status != 'Saving ...':
+            if status != 'Stopping ...' or status != 'Saving ...' or \
+                    status != 'Offline':
                 await stop_server()
 
             else:
@@ -135,7 +139,7 @@ async def on_message(message):
 
 @tasks.loop(seconds=5.0)
 async def serverStatus():
-    text = f"Server: {get_status()} | Players: {get_number_of_players()} | " \
+    text = f"Server: {get_status()} | IP: {get_server_ip()} | " \
            f"--help"
     activity = discord.Activity(type=discord.ActivityType.watching, name=text)
     await client.change_presence(activity=activity)

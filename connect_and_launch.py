@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.common.exceptions import ElementNotInteractableException
 from dotenv import load_dotenv
 from chromedriver_py import binary_path
+from selenium.common.exceptions import NoSuchElementException
 
 load_dotenv()
 USER = os.getenv('USERNAME_C')
@@ -12,7 +13,7 @@ PASSWORD = os.getenv('PASSWORD_C')
 URL = "https://aternos.org/go/"
 
 # chrome variables
-adblock = False  # for those with network wide ad blockers
+adblock = True  # for those with network wide ad blockers
 headless = False  # if you want a headless window
 
 options = webdriver.ChromeOptions()
@@ -60,8 +61,13 @@ def get_status():
 
 def get_number_of_players():
     """ Returns the number of players as a string.
-        Works: When server is online"""
-    return driver.find_element_by_xpath('//*[@id="players"]').text
+        Works: When server is online--Returns 0 if offline"""
+    try:
+        return driver.find_element_by_xpath('//*[@id="players"]').text
+    except NoSuchElementException:
+        # Can't be 0/20 because max isn't always the same,
+        # could maybe pull max players from options page
+        return '0'
 
 
 def get_server_ip():
