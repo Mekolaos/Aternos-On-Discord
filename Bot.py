@@ -51,6 +51,7 @@ async def launch(ctx):
     server_status = get_status()
 
     if server_status == "Offline":
+        await ctx.send("Starting the server...")
         await start_server()
 
         # if pinging a person, server will ping them when launching
@@ -63,7 +64,7 @@ async def launch(ctx):
         # loops until server has started and pings person who launched
         while True:
             await asyncio.sleep(5)
-            if get_status == "Online":
+            if get_status() == "Online":
                 await ctx.send(f"{author.mention}, the server has started!")
                 break
 
