@@ -72,7 +72,7 @@ def get_number_of_players():
         return '0'
 
 
-def get_server_ip():
+def get_ip():
     """ Returns the severs IP address.
         Works: Always works"""
     return driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
@@ -91,11 +91,22 @@ def get_version():
     return driver.find_element_by_xpath('//*[@id="version"]').text
 
 
+def get_tps():
+    """ Returns the server TPS
+        Works; When the server is online--Returns '0' if offline"""
+    try:
+        return driver.find_element_by_xpath('//*[@id="nope"]/main/section/div['
+                                            '3]/div[5]/div[2]/div[1]/div['
+                                            '3]/div[2]/div[2]').text
+    except NoSuchElementException:
+        return '0'
+
+
 def get_server_info():
     """ Returns a string of information about the server
         Returns: server_ip, server_status, number of players, software,
         version"""
-    return get_server_ip(), get_status(), get_number_of_players(), \
+    return get_ip(), get_status(), get_number_of_players(), \
            get_software(), get_version()
 
 

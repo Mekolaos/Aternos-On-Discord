@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from discord.ext import tasks
 from Configure import launch_config
 from connect_and_launch import get_server_info, get_status, \
-    get_number_of_players, get_version, get_software, get_server_ip
+    get_number_of_players, get_version, get_software, get_ip
 from connect_and_launch import connect_account, quitBrowser
 from connect_and_launch import start_server, stop_server
 
