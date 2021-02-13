@@ -4,10 +4,11 @@ from connect_and_launch import get_server_info
 
 def server_info_embed():
     """ Generates embed object for server info"""
-    ip, status, players, software, version = get_server_info()
+    ip, status, players, software, version, tps = get_server_info()
     text = f"**IP:** {ip} \n" \
            f"**Status:** {status} \n" \
            f"**Players:** {players} \n" \
+           f"**TPS:** {tps} \n" \
            f"**Version:** {software} {version}"
     embed = Embed()
     embed.add_field(name="Server Info", value=text, inline=False)

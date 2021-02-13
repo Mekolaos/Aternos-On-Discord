@@ -13,8 +13,8 @@ PASSWORD = os.getenv('PASSWORD_C')
 URL = "https://aternos.org/go/"
 
 # chrome variables
-adblock = True  # for those with network wide ad blockers
-headless = False  # if you want a headless window
+adblock = False  # for those with network wide ad blockers
+headless = True  # if you want a headless window
 
 options = webdriver.ChromeOptions()
 if headless:
@@ -107,7 +107,7 @@ def get_server_info():
         Returns: server_ip, server_status, number of players, software,
         version"""
     return get_ip(), get_status(), get_number_of_players(), \
-           get_software(), get_version()
+           get_software(), get_version(), get_tps()
 
 
 def connect_account():

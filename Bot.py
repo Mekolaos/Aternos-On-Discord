@@ -86,11 +86,13 @@ async def launch(ctx):
 
 @bot.command()
 async def status(ctx):
+    """ Sends the servers status"""
     await ctx.send(f"The server is {get_status()}")
 
 
 @bot.command()
 async def players(ctx):
+    """ Sends the amount of players online."""
     await ctx.send(f"There are {get_number_of_players()} players online.")
 
 
