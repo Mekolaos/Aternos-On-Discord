@@ -134,7 +134,7 @@ async def on_message(message):
 
         else:
             await message.channel.send("Unknown command, use --help to see a "
-                                       "list of all avaliable commands.")
+                                       "list of all available commands.")
 
 
 @tasks.loop(seconds=5.0)
