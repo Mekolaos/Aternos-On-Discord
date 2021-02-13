@@ -1,13 +1,13 @@
 # Aternos On Discord [![Build Status](https://travis-ci.com/Mekolaos/JackADit.svg?branch=master)](https://travis-ci.com/Mekolaos/JackADit)
 
-A simple tool to serve your own discord bot so you can manage an Aternos server from discord.
+A simple tool to serve your own discord bot, so you can manage an Aternos server from discord.
 
 ## Getting Started
 
 1. Git clone this repository
 2. Install it using either:
    * Copy, paste and execute this command inside the project folder: ```pip install -r requirements.txt```
-   * Alternatively you can create a virtual environnement using ```python -m venv venv``` and then ```source venv/bin/activate``` to finally ```pip install -r  requirements.txt```
+   * Alternatively you can create a virtual environment using ```python -m venv venv``` and then ```source venv/bin/activate``` to finally ```pip install -r  requirements.txt```
 3. Execute using this command inside the project folder : ```python3 Bot.py```
 
 **Note:** When running ```Bot.py``` for the first time, you'll be prompted to enter your Aternos account and bot token. You'll need to run ```python3 Bot.py``` again after you finish setting your information.
@@ -22,12 +22,11 @@ A simple tool to serve your own discord bot so you can manage an Aternos server 
 
 ### Discord Commands
 
-* --launch server
-* --server status
-* --server info
+* --launch
+* --status
+* --info
 * --players
-* --stop server
-* --crash
+* --stop
 * --help
 
 

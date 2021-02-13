@@ -32,9 +32,6 @@ def help_embed():
     embed.add_field(name="--stop",
                     value="Stops the server",
                     inline=False)
-    embed.add_field(name="--crash",
-                    value="Shuts down the bot",
-                    inline=False)
     embed.add_field(name="--help",
                     value="Displays this message",
                     inline=False)
