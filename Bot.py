@@ -9,6 +9,7 @@ from connect_and_launch import get_server_info, get_status, \
     get_number_of_players, get_version, get_software, get_ip
 from connect_and_launch import connect_account, quitBrowser
 from connect_and_launch import start_server, stop_server
+from embeds import server_info_embed, help_embed
 
 if not os.path.exists(os.path.relpath(".env")):
     launch_config()
@@ -81,14 +82,7 @@ async def on_message(message):
             await message.channel.send(text)
         
         elif message.content.lower() == '--server info':
-            ip, status, players, software, version = get_server_info()
-            text = f"**IP:** {ip} \n" \
-                   f"**Status:** {status} \n" \
-                   f"**Players:** {players} \n" \
-                   f"**Version:** {software} {version}"
-            embed = discord.Embed()
-            embed.add_field(name="Server Info", value=text, inline=False)
-            await message.channel.send(embed=embed)
+            await message.channel.send(embed=server_info_embed())
 
         elif message.content.lower() == '--stop server':
             await message.channel.send("Stopping the server.")
@@ -102,29 +96,7 @@ async def on_message(message):
                 await message.channel.send("The server is already Offline.")
 
         elif message.content.lower() == '--help':
-            embed = discord.Embed(title="Help")
-            embed.add_field(name="--launch server",
-                            value="Launches the server",
-                            inline=False)
-            embed.add_field(name="--server status",
-                            value="Gets the server status",
-                            inline=False)
-            embed.add_field(name="--server info",
-                            value="Gets the server info",
-                            inline=False)
-            embed.add_field(name="--players",
-                            value="Gets the number of players",
-                            inline=False)
-            embed.add_field(name="--stop server",
-                            value="Stops the server",
-                            inline=False)
-            embed.add_field(name="--crash",
-                            value="Shuts down the bot",
-                            inline=False)
-            embed.add_field(name="--help",
-                            value="Displays this message",
-                            inline=False)
-            await message.channel.send(embed=embed)
+            await message.channel.send(embed=help_embed())
 
         elif message.content == '--crash':
             quitBrowser()

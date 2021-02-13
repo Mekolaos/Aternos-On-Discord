@@ -82,7 +82,7 @@ def get_ip():
 def get_software():
     """ Returns the server software.
         Works: Always works"""
-    return driver.find_element_by_xpath('//*[@id="software"]').tex
+    return driver.find_element_by_xpath('//*[@id="software"]').text
 
 
 def get_version():
