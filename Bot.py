@@ -6,11 +6,10 @@ from dotenv import load_dotenv
 from discord.ext import tasks, commands
 from Configure import launch_config
 from connect_and_launch import get_server_info, get_status, \
-    get_number_of_players, get_version, get_software, get_ip
+    get_number_of_players, get_version, get_software, get_ip, get_tps
 from connect_and_launch import connect_account, quitBrowser
 from connect_and_launch import start_server, stop_server
 from embeds import server_info_embed, help_embed
-
 
 # setup environment vars if .env doesn't exist
 if not os.path.exists(os.path.relpath(".env")):
@@ -121,9 +120,17 @@ async def help(ctx):
 
 @tasks.loop(seconds=5.0)
 async def serverStatus():
-    text = f"Server: {get_status()} | " \
-           f"Players: {get_number_of_players()} | " \
-           f"--help"
+    server_status = get_status()
+    text = None
+    if server_status == "Online":
+        text = f"Server: {get_status()} | " \
+               f"Players: {get_number_of_players()} | " \
+               f"TPS: {get_tps()} | " \
+               f"--help"
+    else:
+        text = f"Server: {get_status()} | " \
+               f"{get_ip()} | " \
+               f"--help"
     activity = discord.Activity(type=discord.ActivityType.watching, name=text)
     await bot.change_presence(activity=activity)
 
