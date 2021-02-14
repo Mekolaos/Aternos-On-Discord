@@ -6,7 +6,7 @@ certifi==2019.11.28
 chardet==3.0.4
 chromedriver-py==88.0.4324.96
 discord==1.0.1
-discord.py==1.5.1
+discord.py==1.6.0
 gitdb==4.0.5
 GitPython==3.1.7
 idna==2.8
