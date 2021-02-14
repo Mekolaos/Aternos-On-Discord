@@ -1,6 +1,7 @@
 import asyncio
 import time
 import os
+import logging
 from selenium import webdriver
 from selenium.common.exceptions import ElementNotInteractableException
 from dotenv import load_dotenv
@@ -13,8 +14,8 @@ PASSWORD = os.getenv('PASSWORD_C')
 URL = "https://aternos.org/go/"
 
 # chrome variables
-adblock = False  # for those with network wide ad blockers
-headless = True  # if you want a headless window
+adblock = True  # for those with network wide ad blockers
+headless = False  # if you want a headless window
 
 options = webdriver.ChromeOptions()
 if headless:
@@ -49,7 +50,7 @@ async def start_server():
             element.click()
         except ElementNotInteractableException:
             pass
-    print("Server Started")
+    logging.info("Server Started")
 
 
 def get_status():
@@ -131,22 +132,26 @@ def connect_account():
 
     # by passes the 3 second adblock
     if adblock:
-        time.sleep(1)
-        element = driver.find_element_by_xpath('//*[@id="sXMbkZHTzeemhBrPtXgBD'
-                                               'DwAboVOOFxHiMjcTsUwoIOJ"]/div/'
-                                               'div/div[3]/div[2]/div[3]/div'
-                                               '[1]')
-        element.click()
-        time.sleep(3)
+        adblockBypass()
 
-    print("Headless Tab Ready")
+    logging.info('Aternos Tab Loaded')
+
+
+def adblockBypass():
+    time.sleep(1)
+    element = driver.find_element_by_xpath('//*[@id="sXMbkZHTzeemhBrPtXgBD'
+                                           'DwAboVOOFxHiMjcTsUwoIOJ"]/div/'
+                                           'div/div[3]/div[2]/div[3]/div'
+                                           '[1]')
+    element.click()
+    time.sleep(3)
 
 
 async def stop_server():
     """ Stops server from aternos panel."""
     element = driver.find_element_by_xpath("//*[@id=\"stop\"]")
     element.click()
-    print("Server Stopped")
+    logging.info("Server Stopped")
 
 
 def quitBrowser():

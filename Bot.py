@@ -2,14 +2,17 @@ import discord
 import os
 import sys
 import asyncio
+import logging
 from dotenv import load_dotenv
 from discord.ext import tasks, commands
 from Configure import launch_config
 from connect_and_launch import get_server_info, get_status, \
     get_number_of_players, get_version, get_software, get_ip, get_tps
-from connect_and_launch import connect_account, quitBrowser
+from connect_and_launch import connect_account, quitBrowser, adblockBypass
 from connect_and_launch import start_server, stop_server
+from connect_and_launch import adblock
 from embeds import server_info_embed, help_embed
+from selenium.common.exceptions import ElementNotInteractableException
 
 # setup environment vars if .env doesn't exist
 if not os.path.exists(os.path.relpath(".env")):
@@ -19,6 +22,10 @@ if not os.path.exists(os.path.relpath(".env")):
 # load environment vars
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+# setup logger
+logging.basicConfig(format='[%(levelname)s] %(asctime)s - %(message)s',
+                    level=logging.INFO)
 
 # bot settings
 intents = discord.Intents.default()
@@ -39,9 +46,13 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=text))
 
     connect_account()  # logs into aternos
-    print(f'The bot is logged in as {bot.user}')
+    logging.info(f'The bot is logged in as {bot.user}')
     await asyncio.sleep(2)
     serverStatus.start()  # starts the presence update loop
+
+    # starts adblock loop if network adblock is on
+    if adblock:
+        adblockWall.start()
 
 
 @bot.command()
@@ -59,6 +70,9 @@ async def launch(ctx):
             author = ctx.author
         else:
             author = ctx.message.mentions[0]
+
+        # logs event to console
+        logging.info(f'Server launched by {author.name}#{author.disciminator}')
 
         # loops until server has started and pings person who launched
         while True:
@@ -103,12 +117,20 @@ async def info(ctx):
 
 @bot.command()
 async def stop(ctx):
-    await ctx.send("Stopping the server...")
     server_status = get_status()
 
-    if server_status != 'Stopping ...' or server_status != 'Saving ...' or \
+    if server_status != 'Stopping ...' and server_status != 'Saving ...' and \
             server_status != 'Offline':
+        await ctx.send("Stopping the server...")
         await stop_server()
+
+        # logs event to console
+        logging.info(f'Server stopped by '
+                     f'{ctx.author.name}#{ctx.author.disciminator}')
+
+    elif server_status == 'Loading ...':
+        await ctx.send(f"The server is currently loading. "
+                       f"Please try again later.")
 
     else:
         await ctx.send("The server is already Offline.")
@@ -136,5 +158,12 @@ async def serverStatus():
     activity = discord.Activity(type=discord.ActivityType.watching, name=text)
     await bot.change_presence(activity=activity)
 
+
+@tasks.loop(minutes=4.0)
+async def adblockWall():
+    try:
+        adblockBypass()
+    except ElementNotInteractableException:
+        pass
 
 bot.run(BOT_TOKEN)
