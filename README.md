@@ -28,7 +28,7 @@ Before following the instructions, make sure you have the following installed:
 1. Git clone this repository
 2. Install it using `pip3 install -r requirements.txt` inside the folder
    - **NOTE**: This may take a while even on higher end Pi's
-3. 3. Setup a [Bot Account](https://discordpy.readthedocs.io/en/latest/discord.html)
+3. Setup a [Bot Account](https://discordpy.readthedocs.io/en/latest/discord.html)
    - You'll need the Bot Token for setting up the Bot
 4. If you don't have a GUI:
    - Create a `.env` file in the following format:
@@ -37,11 +37,11 @@ Before following the instructions, make sure you have the following installed:
         USERNAME_C= ATERNOS_USERNAME
         PASSWORD_C= ATERNOS_PASSWORD
       ```
-4. Setup Chromium 
+5. Setup Chromium 
    1. `sudo apt-get install chromium-browser`
    2. `sudo apt-get install chromium-chromedriver`
    3. In `connect_and_launch.py`, change driver executable path to `'/usr/lib/chromium-browser/chromedriver'`
-5. Run the bot with `python3 Bot.py`
+6. Run the bot with `python3 Bot.py`
 
 
 ### Prerequisites
