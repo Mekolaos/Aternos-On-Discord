@@ -3,16 +3,18 @@ import os
 import sys
 import asyncio
 import logging
+
 from dotenv import load_dotenv
 from discord.ext import tasks, commands
+
 from Configure import launch_config
-from connect_and_launch import get_server_info, get_status, \
-    get_number_of_players, get_version, get_software, get_ip, get_tps
-from connect_and_launch import connect_account, quitBrowser, adblockBypass, \
-    refreshBrowser
+from connect_and_launch import get_status, get_number_of_players, \
+                               get_ip, get_tps
+from connect_and_launch import connect_account, adblockBypass, refreshBrowser
 from connect_and_launch import start_server, stop_server
 from connect_and_launch import adblock
 from embeds import server_info_embed, help_embed
+
 from selenium.common.exceptions import ElementNotInteractableException
 
 # setup environment vars if .env doesn't exist

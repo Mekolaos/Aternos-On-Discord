@@ -2,11 +2,12 @@ import asyncio
 import time
 import os
 import logging
+
 from selenium import webdriver
-from selenium.common.exceptions import ElementNotInteractableException
+from selenium.common.exceptions import ElementNotInteractableException, \
+                                       NoSuchElementException
 from dotenv import load_dotenv
 from chromedriver_py import binary_path
-from selenium.common.exceptions import NoSuchElementException
 
 load_dotenv()
 USER = os.getenv('USERNAME_C')
@@ -14,8 +15,8 @@ PASSWORD = os.getenv('PASSWORD_C')
 URL = "https://aternos.org/go/"
 
 # chrome variables
-adblock = True  # for those with network wide ad blockers
-headless = False  # if you want a headless window
+adblock = False  # for those with network wide ad blockers
+headless = True  # if you want a headless window
 
 options = webdriver.ChromeOptions()
 if headless:
