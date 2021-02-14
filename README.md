@@ -1,8 +1,19 @@
-# Aternos On Discord [![Build Status](https://travis-ci.com/Mekolaos/JackADit.svg?branch=master)](https://travis-ci.com/Mekolaos/JackADit)
+# Aternos On Discord 
+[![Build Status](https://travis-ci.com/Mekolaos/JackADit.svg?branch=master)](https://travis-ci.com/Mekolaos/JackADit)
 
 A simple tool to serve your own discord bot, so you can manage an Aternos server from discord.
 
+- [Aternos On Discord](#aternos-on-discord)
+  - [Getting Started](#getting-started)
+    - [Windows/Mac/Linux (x64)](#windowsmaclinux-x64)
+    - [Raspberry Pi (ARM)](#raspberry-pi-arm)
+  - [Prerequisites](#prerequisites)
+  - [Discord Commands](#discord-commands)
+  - [Cloud Hosting Note](#cloud-hosting-note)
+
 ## Getting Started
+
+### Windows/Mac/Linux (x64)
 
 1. Git clone this repository
 2. Install it using either:
@@ -16,7 +27,7 @@ A simple tool to serve your own discord bot, so you can manage an Aternos server
 
 * Should you ever need to change the information you can edit the ```.env``` directly or delete it and run ```Bot.py``` again.
 
-### Raspberry Pi Setup
+### Raspberry Pi (ARM)
 
 Before following the instructions, make sure you have the following installed: 
 - `sudo apt-get install libxml2-dev libxslt-dev python-dev`
@@ -44,13 +55,13 @@ Before following the instructions, make sure you have the following installed:
 6. Run the bot with `python3 Bot.py`
 
 
-### Prerequisites
+## Prerequisites
 
 * Python 3.7 or higher
 * A Discord server for which you have the rights to add a bot
 * An Aternos account
 
-### Discord Commands
+## Discord Commands
 
 * --launch
 * --status
@@ -60,7 +71,7 @@ Before following the instructions, make sure you have the following installed:
 * --help
 
 
-### Cloud Hosting Note
+## Cloud Hosting Note
 
 Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.
 
