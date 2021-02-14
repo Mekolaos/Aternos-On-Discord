@@ -49,7 +49,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=text))
 
     connect_account()  # logs into aternos
-    logging.info(f'The bot is logged in as {bot.user}')
+    logging.info(f'The bot is logged in as: {bot.user}')
     await asyncio.sleep(2)
     serverStatus.start()  # starts the presence update loop
 
@@ -77,7 +77,7 @@ async def launch(ctx):
             author = ctx.message.mentions[0]
 
         # logs event to console
-        logging.info(f'Server launched by '
+        logging.info(f'Server launched by: '
                      f'{author.name}#{author.discriminator}')
 
         # loops until server has started and pings person who launched
@@ -131,7 +131,7 @@ async def stop(ctx):
         await stop_server()
 
         # logs event to console
-        logging.info(f'Server stopped by '
+        logging.info(f'Server stopped by: '
                      f'{ctx.author.name}#{ctx.author.discriminator}')
 
     elif server_status == 'Loading ...':
