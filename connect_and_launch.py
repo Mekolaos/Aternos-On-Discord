@@ -50,7 +50,6 @@ async def start_server():
             element.click()
         except ElementNotInteractableException:
             pass
-    logging.info("Server Started")
 
 
 def get_status():
@@ -145,15 +144,19 @@ def adblockBypass():
                                            '[1]')
     element.click()
     time.sleep(3)
+    logging.debug("Adblock Wall Bypassed")
 
 
 async def stop_server():
     """ Stops server from aternos panel."""
     element = driver.find_element_by_xpath("//*[@id=\"stop\"]")
     element.click()
-    logging.info("Server Stopped")
 
 
 def quitBrowser():
     """ Quits the browser driver cleanly."""
     driver.quit()
+
+
+def refreshBrowser():
+    driver.refresh()

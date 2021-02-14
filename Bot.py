@@ -8,7 +8,8 @@ from discord.ext import tasks, commands
 from Configure import launch_config
 from connect_and_launch import get_server_info, get_status, \
     get_number_of_players, get_version, get_software, get_ip, get_tps
-from connect_and_launch import connect_account, quitBrowser, adblockBypass
+from connect_and_launch import connect_account, quitBrowser, adblockBypass, \
+    refreshBrowser
 from connect_and_launch import start_server, stop_server
 from connect_and_launch import adblock
 from embeds import server_info_embed, help_embed
@@ -54,6 +55,8 @@ async def on_ready():
     if adblock:
         adblockWall.start()
 
+    resetBrowser.start()  # starts browser refresh loop
+
 
 @bot.command()
 async def launch(ctx):
@@ -72,7 +75,8 @@ async def launch(ctx):
             author = ctx.message.mentions[0]
 
         # logs event to console
-        logging.info(f'Server launched by {author.name}#{author.disciminator}')
+        logging.info(f'Server launched by '
+                     f'{author.name}#{author.discriminator}')
 
         # loops until server has started and pings person who launched
         while True:
@@ -126,7 +130,7 @@ async def stop(ctx):
 
         # logs event to console
         logging.info(f'Server stopped by '
-                     f'{ctx.author.name}#{ctx.author.disciminator}')
+                     f'{ctx.author.name}#{ctx.author.discriminator}')
 
     elif server_status == 'Loading ...':
         await ctx.send(f"The server is currently loading. "
@@ -145,7 +149,6 @@ async def help(ctx):
 @tasks.loop(seconds=5.0)
 async def serverStatus():
     server_status = get_status()
-    text = None
     if server_status == "Online":
         text = f"Server: {get_status()} | " \
                f"Players: {get_number_of_players()} | " \
@@ -159,11 +162,20 @@ async def serverStatus():
     await bot.change_presence(activity=activity)
 
 
-@tasks.loop(minutes=4.0)
+@tasks.loop(seconds=5.0)
 async def adblockWall():
     try:
         adblockBypass()
     except ElementNotInteractableException:
         pass
+
+
+@tasks.loop(hours=1.0)
+async def resetBrowser():
+    refreshBrowser()
+    if adblock:
+        adblockBypass()
+    logging.info('Refreshed browser')
+
 
 bot.run(BOT_TOKEN)
