@@ -126,7 +126,7 @@ async def stop(ctx):
     server_status = get_status()
 
     if server_status != 'Stopping ...' and server_status != 'Saving ...' and \
-            server_status != 'Offline':
+            server_status != 'Offline' and server_status != 'Loading ...':
         await ctx.send("Stopping the server...")
         await stop_server()
 
