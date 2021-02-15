@@ -1,8 +1,11 @@
 import asyncio
 import time
 import os
+import logging
+
 from selenium import webdriver
-from selenium.common.exceptions import ElementNotInteractableException
+from selenium.common.exceptions import ElementNotInteractableException, \
+                                       NoSuchElementException
 from dotenv import load_dotenv
 from chromedriver_py import binary_path
 
@@ -35,50 +38,74 @@ async def start_server():
     # hides the notification question
     driver.execute_script('hideAlert();')
     # server state span
-    state = driver.find_element_by_xpath('//*[@id="nope"]/main/section/div[3]'
-                                         '/div[3]/div[1]/div/span[2]/span')
-    while state.text == "Waiting in queue":
+    while get_status() == "Waiting in queue":
         # while in queue, check for the confirm button and try click it
         await asyncio.sleep(3)
-        state = driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
-                                             'div[3]/div[3]/div[1]/div/span[2]'
-                                             '/span')
         try:
             element = driver.find_element_by_xpath('//*[@id="confirm"]')
             element.click()
         except ElementNotInteractableException:
             pass
-    print("Server Started")
 
 
 def get_status():
     """ Returns the status of the server as a string."""
-    element = driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
-                                           'div[3]/div[3]/div[1]/div/span[2]'
-                                           '/span')
-    return element.text
+    return driver.find_element_by_xpath('//*[@id="nope"]/main/section/div['
+                                        '3]/div[4]/div[1]/div/span['
+                                        '2]/span').text
 
 
 def get_number_of_players():
-    """ Returns the number of players as a string."""
+
+    """ Returns the number of players as a string.
+        Works: When server is online--Returns 0 if offline"""
     try:
-        element = driver.find_element_by_xpath('//*[@id="players"]')
-    except:
+        return driver.find_element_by_xpath('//*[@id="nope"]/main/section'
+                                            '/div[3]/div[6]/div[2]/div['
+                                            '1]/div[1]/div[2]/div[2]').text
+    except NoSuchElementException:
+        # Can't be 0/20 because max isn't always the same,
+        # could maybe pull max players from options page
         return '0'
-    else:
-        return element.text
+
+
+def get_ip():
+    """ Returns the severs IP address.
+        Works: Always works"""
+    return driver.find_element_by_xpath('//*[@id="nope"]/main/section/div['
+                                        '3]/div[2]').text[:-8]
+
+
+def get_software():
+    """ Returns the server software.
+        Works: Always works"""
+    return driver.find_element_by_xpath('//*[@id="software"]').text
+
+
+def get_version():
+    """ Returns the server version.
+        Works: Always works"""
+    return driver.find_element_by_xpath('//*[@id="version"]').text
+
+
+def get_tps():
+    """ Returns the server TPS
+        Works; When the server is online--Returns '0' if offline"""
+    try:
+        return driver.find_element_by_xpath('//*[@id="nope"]/main/section'
+                                            '/div[3]/div[6]/div[2]/div['
+                                            '1]/div[3]/div[2]/div[2]').text
+    except NoSuchElementException:
+        return '0'
+
 
 
 def get_server_info():
     """ Returns a string of information about the server
         Returns: server_ip, server_status, number of players, software,
         version"""
-    server_ip = driver.find_element_by_xpath('//*[@id="nope"]/main/section/'
-                                             'div[3]/div[1]').text[:-8]
-    software = driver.find_element_by_xpath('//*[@id="software"]').text
-    version = driver.find_element_by_xpath('//*[@id="version"]').text
-
-    return server_ip, get_status(), get_number_of_players(), software, version
+    return get_ip(), get_status(), get_number_of_players(), \
+           get_software(), get_version(), get_tps()
 
 
 def connect_account():
@@ -102,24 +129,32 @@ def connect_account():
 
     # by passes the 3 second adblock
     if adblock:
-        time.sleep(1)
-        element = driver.find_element_by_xpath('//*[@id="sXMbkZHTzeemhBrPtXgBD'
-                                               'DwAboVOOFxHiMjcTsUwoIOJ"]/div/'
-                                               'div/div[3]/div[2]/div[3]/div'
-                                               '[1]')
-        element.click()
-        time.sleep(3)
+        adblockBypass()
 
-    print("Headless Tab Ready")
+    logging.info('Aternos Tab Loaded')
+
+
+def adblockBypass():
+    time.sleep(1)
+    element = driver.find_element_by_xpath('//*[@id="sXMbkZHTzeemhBrPtXgBD'
+                                           'DwAboVOOFxHiMjcTsUwoIOJ"]/div/'
+                                           'div/div[3]/div[2]/div[3]/div'
+                                           '[1]')
+    element.click()
+    time.sleep(3)
+    logging.debug("Adblock Wall Bypassed")
 
 
 async def stop_server():
     """ Stops server from aternos panel."""
     element = driver.find_element_by_xpath("//*[@id=\"stop\"]")
     element.click()
-    print("Server Stopped")
 
 
 def quitBrowser():
     """ Quits the browser driver cleanly."""
     driver.quit()
+
+
+def refreshBrowser():
+    driver.refresh()
