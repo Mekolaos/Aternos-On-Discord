@@ -56,6 +56,7 @@ def get_status():
 
 
 def get_number_of_players():
+
     """ Returns the number of players as a string.
         Works: When server is online--Returns 0 if offline"""
     try:
@@ -96,6 +97,7 @@ def get_tps():
                                             '1]/div[3]/div[2]/div[2]').text
     except NoSuchElementException:
         return '0'
+
 
 
 def get_server_info():
