@@ -61,8 +61,12 @@ def get_status():
 
 def get_number_of_players():
     """ Returns the number of players as a string."""
-    element = driver.find_element_by_xpath('//*[@id="players"]')
-    return element.text
+    try:
+        element = driver.find_element_by_xpath('//*[@id="players"]')
+    except:
+        return '0'
+    else:
+        return element.text
 
 
 def get_server_info():
