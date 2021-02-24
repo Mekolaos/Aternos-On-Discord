@@ -51,7 +51,7 @@ async def start_server():
 def get_status():
     """ Returns the status of the server as a string."""
     return driver.find_element_by_xpath('//*[@id="nope"]/main/section/div['
-                                        '3]/div[4]/div[1]/div/span['
+                                        '3]/div[3]/div[1]/div/span['
                                         '2]/span').text
 
 
@@ -61,7 +61,7 @@ def get_number_of_players():
         Works: When server is online--Returns 0 if offline"""
     try:
         return driver.find_element_by_xpath('//*[@id="nope"]/main/section'
-                                            '/div[3]/div[6]/div[2]/div['
+                                            '/div[3]/div[5]/div[2]/div['
                                             '1]/div[1]/div[2]/div[2]').text
     except NoSuchElementException:
         # Can't be 0/20 because max isn't always the same,
@@ -73,7 +73,7 @@ def get_ip():
     """ Returns the severs IP address.
         Works: Always works"""
     return driver.find_element_by_xpath('//*[@id="nope"]/main/section/div['
-                                        '3]/div[2]').text[:-8]
+                                        '3]/div[1]').text[:-8]
 
 
 def get_software():
@@ -93,11 +93,10 @@ def get_tps():
         Works; When the server is online--Returns '0' if offline"""
     try:
         return driver.find_element_by_xpath('//*[@id="nope"]/main/section'
-                                            '/div[3]/div[6]/div[2]/div['
+                                            '/div[3]/div[5]/div[2]/div['
                                             '1]/div[3]/div[2]/div[2]').text
     except NoSuchElementException:
         return '0'
-
 
 
 def get_server_info():
