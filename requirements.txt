@@ -2,7 +2,7 @@ aiohttp==3.7.4
 async-timeout==3.0.1
 attrs==20.3.0
 chardet==3.0.4
-chromedriver-py==90.0.4430.93
+chromedriver-py==90.0.4430.24
 discord.py==1.6.0
 idna==3.1
 multidict==5.1.0
