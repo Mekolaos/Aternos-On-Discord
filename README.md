@@ -3,6 +3,8 @@
 
 An update of Mekolaos's discord bot.
 
+Logins to Aternos and can start the server and take commands from Discord.
+
 Important Notes:
 -**This no longer works headless, aternos doesnt let you log in**
 -**This now uses and api from minecraft that lets you get a simplified player list**
