@@ -1,22 +1,31 @@
 # Aternos On Discord 
 [![Build Status](https://travis-ci.com/Mekolaos/JackADit.svg?branch=master)](https://travis-ci.com/Mekolaos/JackADit)
 
-An update of Mekolaos's discord bot.
+An update of Mekolaos's repo.
+
+A Discord bot made in Python which manages an Aternos.org server.
+
 
 Logins to Aternos and can start the server and take commands from Discord.
 
-Important Notes:
--**This no longer works headless, aternos doesnt let you log in**
--**This now uses and api from minecraft that lets you get a simplified player list**
--**This is against Aternos tos! Your account *may* get banned**
 
 - [Aternos On Discord](#aternos-on-discord)
+  - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
     - [Windows/Mac/Linux (x64)](#windowsmaclinux-x64)
     - [Raspberry Pi (ARM)](#raspberry-pi-arm)
-  - [Prerequisites](#prerequisites)
-  - [Discord Commands](#discord-commands)
+  - [Usage](#usage)
   - [Cloud Hosting Note](#cloud-hosting-note)
+
+
+
+## Prerequisites
+
+* Python 3.7 or higher
+* A Discord server for which you have the rights to add a bot
+* An Aternos account
+
+
 
 ## Getting Started
 
@@ -61,23 +70,23 @@ Before following the instructions, make sure you have the following installed:
 7. Run the bot with `python3 Launch.py`
 
 
-## Prerequisites
-
-* Python 3.7 or higher
-* A Discord server for which you have the rights to add a bot
-* An Aternos account
-
-## Discord Commands
-
-* --launch
-* --status
-* --help
-
 *Note: some commands were removed from the original Aternos on Discord for simplicity, status and info have been merged.*
+
+## Usage:
+
+### Discord Commands:
+* --launch - starts the server
+* --status - displays info about the server
+* --help - displays commands
 
 
 ## Cloud Hosting Note
 
 *Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.* - Original note from Mekolaos, now still aplies but wouldn't work anyway as I'm not sure if you can run non headless in servers
+
+
+## Acknowledgments
+
+* - [Mekolaos, creator of the original Aternos-On-Discord](https://github.com/Mekolaos)
 
 
