@@ -81,4 +81,4 @@ def get_players():
             names.append(a.name)
         return names
     except:
-        return "ERR"
+        return []
