@@ -1,5 +1,6 @@
 # Aternos On Discord 
 ![GitHub repo size](https://img.shields.io/github/repo-size/kozabrada123/Aternos-On-Discord)
+![GitHub](https://img.shields.io/github/license/kozabrada123/Aternos-On-Discord)
 
 An update of Mekolaos's repo.
 
