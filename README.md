@@ -1,6 +1,5 @@
 # Aternos On Discord 
 [![Build Status](https://travis-ci.com/Mekolaos/JackADit.svg?branch=master)](https://travis-ci.com/Mekolaos/JackADit)
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=kozabrada123)](https://github.com/anuraghazra/github-readme-stats)
 
 An update of Mekolaos's repo.
 
