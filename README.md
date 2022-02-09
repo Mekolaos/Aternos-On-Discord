@@ -1,4 +1,5 @@
 # Aternos On Discord 
+![GitHub branch checks state](https://img.shields.io/github/checks-status/kozabrada123/Aternos-On-Discord/master)
 ![GitHub repo size](https://img.shields.io/github/repo-size/kozabrada123/Aternos-On-Discord)
 ![GitHub](https://img.shields.io/github/license/kozabrada123/Aternos-On-Discord)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kozabrada123/Aternos-On-Discord)
