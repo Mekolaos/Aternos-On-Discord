@@ -49,6 +49,19 @@ def fix_serverlist():
 def start_server():
     startelement = driver.find_element(By.ID, "start")
     startelement.click()
+    driver.implicitly_wait(2)
+    # hides the notification question
+    driver.execute_script('hideAlert();')
+    # server state span
+    while get_status() == "Waiting in queue":
+        # while in queue, check for the confirm button and try click it
+        await asyncio.sleep(3)
+        try:
+            element = driver.find_element(By.ID, 'confirm')
+            element.click()
+        except:
+            pass
+
 
 def get_status():
     return driver.find_element(By.CLASS_NAME, "statuslabel-label").text
