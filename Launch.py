@@ -33,7 +33,7 @@ async def launch(ctx):
 
     if status == "Offline":
         await ctx.send("Starting the server...")
-        await Functions.start_server()
+        Functions.start_server()
 
         author = ctx.author
 
