@@ -3,7 +3,7 @@
 
 An update of Mekolaos's discord bot.
 
-Improtant Notes:
+Important Notes:
 -**This no longer works headless, aternos doesnt let you log in**
 -**This now uses and api from minecraft that lets you get a simplified player list**
 -**This is against Aternos tos! Your account *may* get banned**
@@ -63,7 +63,7 @@ Before following the instructions, make sure you have the following installed:
 
 * Python 3.7 or higher
 * A Discord server for which you have the rights to add a bot
-* An Aternos account (I recommend making a small alt account since it *may* get banned)
+* An Aternos account
 
 ## Discord Commands
 
