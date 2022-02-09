@@ -55,7 +55,7 @@ def start_server():
     # server state span
     while get_status() == "Waiting in queue":
         # while in queue, check for the confirm button and try click it
-        await asyncio.sleep(3)
+        driver.implicitly_wait(2)
         try:
             element = driver.find_element(By.ID, 'confirm')
             element.click()
