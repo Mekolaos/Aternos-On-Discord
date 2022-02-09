@@ -1,8 +1,11 @@
 # Aternos On Discord 
-![GitHub branch checks state](https://img.shields.io/github/checks-status/kozabrada123/Aternos-On-Discord/master)
-![GitHub repo size](https://img.shields.io/github/repo-size/kozabrada123/Aternos-On-Discord)
 ![GitHub](https://img.shields.io/github/license/kozabrada123/Aternos-On-Discord)
+![GitHub top language](https://img.shields.io/github/languages/top/kozabrada123/Aternos-On-Discord)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kozabrada123/Aternos-On-Discord)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kozabrada123/Aternos-On-Discord)
+![GitHub issues](https://img.shields.io/github/issues/kozabrada123/Aternos-On-Discord)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kozabrada123/Aternos-On-Discord)
+
 
 An update of Mekolaos's repo.
 
