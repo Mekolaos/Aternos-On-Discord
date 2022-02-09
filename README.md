@@ -1,5 +1,5 @@
 # Aternos On Discord 
-[![Build Status](https://travis-ci.com/Mekolaos/JackADit.svg?branch=master)](https://travis-ci.com/Mekolaos/JackADit)
+![GitHub repo size](https://img.shields.io/github/repo-size/kozabrada123/Aternos-On-Discord)
 
 An update of Mekolaos's repo.
 
