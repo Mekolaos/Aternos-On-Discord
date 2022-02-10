@@ -74,7 +74,7 @@ def refreshBrowser():
 
 def get_players():
     try:
-        server = MinecraftServer.lookup("scowws.aternos.me")
+        server = MinecraftServer.lookup(get_ip())
         status = server.status()
         #print(status.players.sample)
         names = []
