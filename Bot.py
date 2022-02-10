@@ -2,7 +2,7 @@ import time
 
 import Settings
 import discord
-import Functions
+import connect_and_launch
 from discord.ext import tasks, commands
 
 from Embeds import server_info_embed, help_embed
@@ -20,7 +20,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=status))
 
     #Login to aternos here
-    Functions.connect_account()
+    connect_and_launch.connect_account()
 
     #Start both thingies
     reloadBrowser.start()
@@ -29,11 +29,11 @@ async def on_ready():
 
 @bot.command()
 async def launch(ctx):
-    status = Functions.get_status()
+    status = connect_and_launch.get_status()
 
     if status == "Offline":
         await ctx.send("Starting the server...")
-        Functions.start_server()
+        connect_and_launch.start_server()
 
         author = ctx.author
 
@@ -41,16 +41,16 @@ async def launch(ctx):
 
         while True:
             time.sleep(5)
-            if Functions.get_status() == "Online":
+            if connect_and_launch.get_status() == "Online":
                 await ctx.send(f"{author.mention}, the server has started!")
                 break
 
 
-    elif Functions.get_status() == "Online":
+    elif connect_and_launch.get_status() == "Online":
         await ctx.send("The server is already online.")
 
     else:
-        await ctx.send("Could not start the server. Reason: server is " + Functions.get_status())
+        await ctx.send("Could not start the server. Reason: server is " + connect_and_launch.get_status())
 
 
 @bot.command()
@@ -69,31 +69,26 @@ async def help(ctx):
 
 @tasks.loop(seconds=15.0)
 async def updateStatus():
-    server_status = Functions.get_status()
+    server_status = connect_and_launch.get_status()
     if server_status == "Online":
         text = f"Server: Online | " \
-               f"{len(Functions.get_players())} | " \
+               f"{len(connect_and_launch.get_players())} | " \
                f"--help"
 
     else:
-        text = f"Server: {Functions.get_status()} | " \
+        text = f"Server: {connect_and_launch.get_status()} | " \
                f"--help"
 
     activity = discord.Activity(type=discord.ActivityType.watching, name=text)
     await bot.change_presence(activity=activity)
 
 
-@tasks.loop(minutes=5)
-async def tryfixes():
-    #also try
-    Functions.fix_serverlist()
-
 
 
 
 @tasks.loop(hours=1.0)
 async def reloadBrowser():
-    Functions.refreshBrowser()
+    connect_and_launch.refreshBrowser()
 
 
 
