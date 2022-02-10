@@ -48,7 +48,7 @@ Logins to Aternos and can start the server and take commands from Discord.
 - Set `Username = ****` to your aternos username
 - Set `Password = ****` to your aternos password
  
-4. Run this command to start the bot : ```python3 Launch.py```
+4. Run this command to start the bot : ```python3 Bot.py```
 
 
 ### Raspberry Pi (ARM)
@@ -73,7 +73,7 @@ Before following the instructions, make sure you have the following installed:
    1. `sudo apt-get install chromium-browser`
    2. `sudo apt-get install chromium-chromedriver`
    ~~3. In `connect_and_launch.py`, change driver executable path to `'/usr/lib/chromium-browser/chromedriver'`~~ This is deprecated in selenium, should not be needed
-7. Run the bot with `python3 Launch.py`
+7. Run the bot with `python3 Bot.py`
 
 
 *Note: some commands were removed from the original Aternos on Discord for simplicity, status and info have been merged.*
