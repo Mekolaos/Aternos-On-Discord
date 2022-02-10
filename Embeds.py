@@ -1,11 +1,11 @@
 from discord import Embed
-import Functions
+import connect_and_launch
 
 def server_info_embed():
 
-    text = f"**Status:** {Functions.get_status()} \n" \
-           f"**Number of players:** {len(Functions.get_players())} \n" \
-           f"**Players:** {str(Functions.get_players()).replace('[', '').replace(']', '')} \n" \
+    text = f"**Status:** {connect_and_launch.get_status()} \n" \
+           f"**Number of players:** {len(connect_and_launch.get_players())} \n" \
+           f"**Players:** {str(connect_and_launch.get_players()).replace('[', '').replace(']', '')} \n" \
 
     embed = Embed()
     embed.add_field(name="Server Info", value=text, inline=False)
