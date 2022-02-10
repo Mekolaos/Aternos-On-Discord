@@ -49,9 +49,10 @@ def fix_serverlist():
 def start_server():
     startelement = driver.find_element(By.ID, "start")
     startelement.click()
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(4)
     # hides the notification question
-    driver.execute_script('hideAlert();')
+    element = driver.find_element(By.CLASS_NAME, "btn-red")
+    element.click
     # server state span
     while get_status() == "Waiting in queue":
         # while in queue, check for the confirm button and try click it
@@ -82,3 +83,44 @@ def get_players():
         return names
     except:
         return []
+    
+    
+    
+
+def get_number_of_players():
+   return len(get_players())
+
+
+def get_ip():
+    """ Returns the severs IP address.
+        Works: Always works"""
+    return driver.find_element(By.ID, "ip").text
+
+
+def get_software():
+    """ Returns the server software.
+        Works: Always works"""
+    return driver.find_element(By.ID, "software").text
+
+
+def get_version():
+    """ Returns the server version.
+        Works: Always works"""
+    return driver.find_element(By.ID, "version").text
+
+
+def get_tps():
+    """ Returns the server TPS
+        Works; When the server is online--Returns '0' if offline"""
+    try:
+        return driver.find_element(By.CLASS_NAME, "js-tps").text
+    except NoSuchElementException:
+        return '0'
+
+
+def get_server_info():
+    """ Returns a string of information about the server
+        Returns: server_ip, server_status, number of players, software,
+        version"""
+    return get_ip(), get_status(), get_number_of_players(), \
+           get_software(), get_version(), get_tps()
