@@ -44,7 +44,7 @@ Logins to Aternos and can start the server and take commands from Discord.
    - You'll need the Bot Token for setting up the Bot
 
 4. Open Settings.py in a text editor or ide:
-- Set `Token = ****` to your bot token, so `Token = "putyourrandomdiscordtokenhereithastobe59charsafewmorethanth"`
+- Set `Token = ****` to your bot token, so `Token = "1w3prk3adjjbfp8d91r3onls8t1roy7f7pf4zx5zmdywh5qemhuulumybl2"`
 - Set `Username = ****` to your aternos username, so `Username = "AnAternosUsername"`
 - Set `Password = ****` to your aternos password, so `Password = "AnAternosPassword"`
  
