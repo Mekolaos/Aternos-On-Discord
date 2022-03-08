@@ -1,4 +1,4 @@
-# Aternos On Discord 
+![Aternos On Discord (Updated)](https://repository-images.githubusercontent.com/457308479/f3408eec-a02b-4846-9484-180cfb0be4d3)
 ![GitHub](https://img.shields.io/github/license/kozabrada123/Aternos-On-Discord)
 ![GitHub top language](https://img.shields.io/github/languages/top/kozabrada123/Aternos-On-Discord)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/kozabrada123/Aternos-On-Discord)
