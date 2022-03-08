@@ -1,1 +1,0 @@
-# TODO : test the status functions (DUH !)
