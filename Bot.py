@@ -3,6 +3,7 @@ import time
 import Settings
 import discord
 import connect_and_launch
+import colorama
 from discord.ext import tasks, commands
 
 from Embeds import server_info_embed, help_embed
@@ -37,7 +38,7 @@ async def launch(ctx):
 
         author = ctx.author
 
-        print("Server launched by " + author.name, author.discriminator)
+        print(colorama.Fore.GREEN + "Server launched by " + colorama.Fore.CYAN + author.name, author.discriminator + colorama.Style.RESET_ALL)
 
         while True:
             time.sleep(5)
