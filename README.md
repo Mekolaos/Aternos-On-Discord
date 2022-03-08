@@ -48,7 +48,7 @@ Visit the [wiki](https://github.com/kozabrada123/Aternos-On-Discord-Update/wiki)
 
 ## Cloud Hosting Note
 
-*Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.* - Original note from Mekolaos, now still aplies but wouldn't work anyway as I'm not sure if you can run non headless in servers
+Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.
 
 
 ## Acknowledgments
