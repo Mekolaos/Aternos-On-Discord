@@ -36,48 +36,7 @@ An update of Mekolaos's repo.
 
 ## Getting Started
 
-### Windows/Mac/Linux (x64)
-
-1. Git clone this repository
-2. Install it using either:
-   * Copy, paste and execute this command inside the project folder: ```pip install -r requirements.txt```
-3. Setup a [Bot Account](https://discordpy.readthedocs.io/en/latest/discord.html)
-   - You'll need the Bot Token for setting up the Bot
-
-4. Open Settings.py in a text editor or ide:
-- Set `Token = ****` to your bot token, so `Token = "1w3prk3adjjbfp8d91r3onls8t1roy7f7pf4zx5zmdywh5qemhuulumybl2"`
-- Set `Username = ****` to your aternos username, so `Username = "AnAternosUsername"`
-- Set `Password = ****` to your aternos password, so `Password = "AnAternosPassword"`
- 
-5. Run this command to start the bot : ```python3 Bot.py```
-
-
-### Raspberry Pi (ARM)
-
-Before following the instructions, make sure you have the following installed: 
-- `sudo apt-get install libxml2-dev libxslt-dev python-dev`
-- `sudo apt-get install python3-lxml python-lxml`
-- `sudo apt-get install python3-wheel`
-
-
-1. Git clone this repository
-2. Install it using `pip3 install -r requirements.txt` inside the folder
-   - **NOTE**: This may take a while even on higher end Pi's
-3. Setup a [Bot Account](https://discordpy.readthedocs.io/en/latest/discord.html)
-   - You'll need the Bot Token for setting up the Bot
-4. Setup Settings.py:
-- Set `Token = ****` to your bot token
-- Set `Username = ****` to your aternos username
-- Set `Password = ****` to your aternos password
-
-5. Setup Chromium 
-   1. `sudo apt-get install chromium-browser`
-   2. `sudo apt-get install chromium-chromedriver`
-   ~~3. In `connect_and_launch.py`, change driver executable path to `'/usr/lib/chromium-browser/chromedriver'`~~ This is deprecated in selenium, should not be needed
-6. Run the bot with `python3 Bot.py`
-
-
-*Note: some commands were removed from the original Aternos on Discord for simplicity, status and info have been merged.*
+Visit the [wiki](https://github.com/kozabrada123/Aternos-On-Discord-Update/wiki) for info on installing and getting started.
 
 ## Usage:
 
