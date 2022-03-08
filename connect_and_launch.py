@@ -1,12 +1,14 @@
-from selenium.webdriver.common.by import By
-
-import Settings
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import Settings
+
+import colorama
+
 
 from mcstatus import MinecraftServer
-
-server = MinecraftServer("scowws.aternos.me")
-
 
 driver = webdriver.Chrome(options=Settings.woptions)
 
@@ -14,26 +16,32 @@ driver = webdriver.Chrome(options=Settings.woptions)
 def connect_account():
     driver.get("https://aternos.org/go/")
 
+    print(colorama.Fore.YELLOW, "Logging into Aternos...", colorama.Style.RESET_ALL)
+
+    wait = WebDriverWait(driver, 10)
+    usernamelement = wait.until(EC.element_to_be_clickable((By.ID, "user"))).click()
+
     usernamelement = driver.find_element(By.ID, "user")
-    usernamelement.click()
     usernamelement.send_keys(Settings.Username)
 
+    passelement = wait.until(EC.element_to_be_clickable((By.ID, "password"))).click()
+
     passelement = driver.find_element(By.ID, "password")
-    passelement.click()
     passelement.send_keys(Settings.Password)
 
-    loginelement = driver.find_element(By.ID, "login")
-    loginelement.click()
+    loginelement = wait.until(EC.element_to_be_clickable((By.ID, "login"))).click()
+
+    print(colorama.Fore.GREEN, "Logged in..", colorama.Style.RESET_ALL)
 
     driver.implicitly_wait(2)
-    acceptcookiesid = driver.find_element(By.ID, "accept-choices")
-    acceptcookiesid.click()
+    acceptcookiesid = wait.until(EC.element_to_be_clickable((By.ID, "accept-choices"))).click()
     driver.implicitly_wait(2)
 
-    serverelement = driver.find_element(By.CLASS_NAME, "server-body")
-    serverelement.click()
+    serverelement = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "server-body"))).click()
 
     driver.implicitly_wait(2)
+
+    print(colorama.Fore.GREEN, "On server page!", colorama.Style.RESET_ALL)
 
 
 def fix_serverlist():
@@ -47,21 +55,24 @@ def fix_serverlist():
         pass
 
 def start_server():
-    startelement = driver.find_element(By.ID, "start")
-    startelement.click()
+    print(colorama.Fore.YELLOW, "Starting server..", colorama.Style.RESET_ALL)
+
+    wait = WebDriverWait(driver, 10)
+    startelement = wait.until(EC.element_to_be_clickable((By.ID, "start"))).click()
     driver.implicitly_wait(4)
     # hides the notification question
-    element = driver.find_element(By.CLASS_NAME, "btn-red")
-    element.click
+    element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "btn-red"))).click()
     # server state span
     while get_status() == "Waiting in queue":
         # while in queue, check for the confirm button and try click it
         driver.implicitly_wait(2)
         try:
-            element = driver.find_element(By.ID, 'confirm')
-            element.click()
+            wait = WebDriverWait(driver, 2)
+            element = wait.until(EC.element_to_be_clickable((By.ID, 'confirm'))).click()
         except:
             pass
+
+    print(colorama.Fore.GREEN, "Started Server!", colorama.Style.RESET_ALL)
 
 
 def get_status():
