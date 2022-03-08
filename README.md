@@ -12,9 +12,11 @@ A Discord bot made in Python which manages an Aternos Minecraft server.
 
 Logins to Aternos and can start the server and take commands from Discord.
 
+<br/>
 
-**WARNING: THIS IS AGAINST ATERNOS' TOS AND CAN GET YOUR BANNED.**
+### **WARNING: THIS IS AGAINST ATERNOS' TOS AND CAN GET YOUR ACCOUNT BANNED.**
 
+<br/>
 
 An update of Mekolaos's repo.
 
