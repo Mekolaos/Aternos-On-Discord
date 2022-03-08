@@ -20,7 +20,7 @@ Logins to Aternos and can start the server and take commands from Discord.
 
 An update of Mekolaos's repo.
 
-
+<br/>
 
 
 - [Aternos On Discord](#aternos-on-discord)
@@ -37,7 +37,7 @@ An update of Mekolaos's repo.
 
 * Python 3.7 or higher
 * A Discord server for which you have the rights to add a bot
-* An Aternos account
+* An Aternos account (**Which you *may* need to be comfortable being banned, don't use the account that owns the server**)
 
 
 
