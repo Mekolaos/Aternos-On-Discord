@@ -1,3 +1,5 @@
+import datetime
+
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
@@ -16,7 +18,7 @@ driver = webdriver.Chrome(options=Settings.woptions)
 def connect_account():
     driver.get("https://aternos.org/go/")
 
-    print(colorama.Fore.YELLOW, "Logging into Aternos...", colorama.Style.RESET_ALL)
+    print_out("Logging into Aternos...", colorama.Fore.YELLOW)
 
     wait = WebDriverWait(driver, 10)
     usernamelement = wait.until(EC.element_to_be_clickable((By.ID, "user"))).click()
@@ -31,7 +33,7 @@ def connect_account():
 
     loginelement = wait.until(EC.element_to_be_clickable((By.ID, "login"))).click()
 
-    print(colorama.Fore.GREEN, "Logged in..", colorama.Style.RESET_ALL)
+    print_out("Logged in", colorama.Fore.GREEN)
 
     driver.implicitly_wait(2)
     acceptcookiesid = wait.until(EC.element_to_be_clickable((By.ID, "accept-choices"))).click()
@@ -41,7 +43,7 @@ def connect_account():
 
     driver.implicitly_wait(2)
 
-    print(colorama.Fore.GREEN, "On server page!", colorama.Style.RESET_ALL)
+    print_out("Successfully on server page.", colorama.Fore.GREEN)
 
 
 def fix_serverlist():
@@ -55,7 +57,7 @@ def fix_serverlist():
         pass
 
 def start_server():
-    print(colorama.Fore.YELLOW, "Starting server..", colorama.Style.RESET_ALL)
+    print_out("Starting the server..", colorama.Fore.YELLOW)
 
     wait = WebDriverWait(driver, 10)
     startelement = wait.until(EC.element_to_be_clickable((By.ID, "start"))).click()
@@ -72,7 +74,7 @@ def start_server():
         except:
             pass
 
-    print(colorama.Fore.GREEN, "Started Server!", colorama.Style.RESET_ALL)
+    print_out("Started the server..", colorama.Fore.GREEN)
 
 
 def get_status():
@@ -135,3 +137,8 @@ def get_server_info():
         version"""
     return get_ip(), get_status(), get_number_of_players(), \
            get_software(), get_version(), get_tps()
+
+
+def print_out(out, color):
+    print("")
+    print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "]" + color, out, colorama.Style.RESET_ALL)

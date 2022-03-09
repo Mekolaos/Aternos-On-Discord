@@ -1,3 +1,4 @@
+import datetime
 import time
 
 import Settings
@@ -38,7 +39,7 @@ async def launch(ctx):
 
         author = ctx.author
 
-        print(colorama.Fore.GREEN + "Server launched by " + colorama.Fore.CYAN + author.name, author.discriminator + colorama.Style.RESET_ALL)
+        print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "]" + colorama.Fore.GREEN + "Server launched by " + colorama.Fore.CYAN + author.name, author.discriminator + colorama.Style.RESET_ALL)
 
         while True:
             time.sleep(5)
@@ -91,6 +92,9 @@ async def updateStatus():
 async def reloadBrowser():
     connect_and_launch.refreshBrowser()
 
+def print_out(out, color):
+    print("")
+    print("[" + datetime.datetime.now().strftime("%H:%M:%S") + "]" + color, out, colorama.Style.RESET_ALL)
 
 
 
