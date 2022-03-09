@@ -55,7 +55,9 @@ Visit the [wiki](https://github.com/kozabrada123/Aternos-On-Discord-Update/wiki)
 
 ## Cloud Hosting Note
 
-Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.
+*Cloud hosting this bot would require some workarounds as Aternos recognizes you are connecting from a data center and prompts for a captcha test.*
+
+Note: There is undetected_chromedriver which *could* work, but it isn't supported on Arm / RPi so I'm not officially supporting it.
 
 
 ## Acknowledgments
